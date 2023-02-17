@@ -104,7 +104,7 @@ window.onload = function() {
 };
 
 document.querySelector("#city").addEventListener("change", function(e) {
-  const value = e.target.value;
+  const value = this.value;
   const key = document.querySelector("#country").getAttribute("for");
   let values = {};
   const usa = "USA";
