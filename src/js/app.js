@@ -90,9 +90,10 @@ window.onload = function() {
       const attribute = e.target.getAttribute("for"); // when any input changes, collect the value
       let values = {};
       values[attribute] =
-        this.value == "" || this.value == "null"
-          ? null
-          : this.value == "true"
+        /*   this.value == "" || this.value == "null"
+          ? null 
+          :*/ this
+          .value == "true"
           ? true
           : this.value == "false"
           ? false
@@ -101,3 +102,40 @@ window.onload = function() {
     });
   });
 };
+
+document.querySelector("#city").addEventListener("change", function(e) {
+  const value = e.target.value;
+  const key = document.querySelector("#country").getAttribute("for");
+  let values = {};
+  const usa = "USA";
+  const germany = "Germany";
+  const canada = "Canada";
+  const venezuela = "Venezuela";
+  switch (value) {
+    case "Miami":
+      document.querySelector("#country").value = usa; //se cambia el valor del combobox de paises
+      values[key] = usa; //se le asigna un valor al obj que contiene el pais (obj.key)
+      render(Object.assign(window.variables, values)); //con esta linea se hace un render que actualiza DOM con los valores del obj
+      break;
+    case "Munich":
+      document.querySelector("#country").value = germany; //se cambia el valor del combobox de paises
+      values[key] = germany; //se le asigna un valor al obj que contiene el pais (obj.key)
+      render(Object.assign(window.variables, values)); //con esta linea se hace un render que actualiza DOM con los valores del obj
+      break;
+    case "Caracas":
+      document.querySelector("#country").value = venezuela; //se cambia el valor del combobox de paises
+      values[key] = venezuela; //se le asigna un valor al obj que contiene el pais (obj.key)
+      render(Object.assign(window.variables, values)); //con esta linea se hace un render que actualiza DOM con los valores del obj
+      break;
+    case "Toronto":
+      document.querySelector("#country").value = canada; //se cambia el valor del combobox de paises
+      values[key] = canada; //se le asigna un valor al obj que contiene el pais (obj.key)
+      render(Object.assign(window.variables, values)); //con esta linea se hace un render que actualiza DOM con los valores del obj
+      break;
+    default:
+      document.querySelector("#country").value = "Country"; //se cambia el valor del combobox de paises
+      values[key] = "Country"; //se le asigna un valor al obj que contiene el pais (obj.key)
+      render(Object.assign(window.variables, values)); //con esta linea se hace un render que actualiza DOM con los valores del obj
+      break;
+  }
+});
